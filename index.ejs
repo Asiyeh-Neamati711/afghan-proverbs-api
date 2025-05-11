@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ضرب‌المثل‌های افغان</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>کتاب ضرب‌المثل‌ها</h1>
+
+  <form method="GET" action="/">
+    <input type="text" name="search" placeholder="جستجو..." value="<%= search %>">
+    <button type="submit">جستجو</button>
+  </form>
+
+  <form action="/add" method="POST">
+    <input type="text" name="proverb" placeholder="ضرب‌المثل">
+    <input type="text" name="meaning" placeholder="معنی">
+    <button type="submit">ارسال</button>
+  </form>
+
+  <ul>
+    <% proverbs.forEach((proverb, index) => { %>
+      <li>
+        <strong><%= proverb.text %></strong><br>
+        <em><%= proverb.meaning %></em>
+        <form action="/delete/<%= index %>" method="POST" style="display:inline;">
+          <button type="submit" class="delete">حذف</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
